@@ -1,205 +1,600 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Portfolio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lloyd Vince Angelo B. Tadeo — Portfolio</title>
 
-  <style>
-  .before-fade {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F7F6F2;
+    --ink:#11161D;
+    --ink-soft:#4B5563;
+    --navy:#0E1626;
+    --blue:#3667C2;
+    --teal:#2E9E8F;
+    --amber:#E7A23A;
+    --line:rgba(17,22,29,0.14);
+    --line-soft:rgba(247,246,242,0.16);
+    --paper-soft:rgba(247,246,242,0.7);
+    --paper-faint:rgba(247,246,242,0.6);
+    --max:960px;
   }
 
-  .fade-in {
-    opacity: 1;
-    transform: translateY(0);
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.5;
   }
-  </style>
+
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+
+  h1,h2,h3,h4,.display{
+    font-family:'Space Grotesk',system-ui,sans-serif;
+    letter-spacing:-0.01em;
+    font-weight:600;
+  }
+
+  .mono{
+    font-family:'JetBrains Mono',monospace;
+    letter-spacing:0.02em;
+  }
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* --- scroll reveal --- */
+  .reveal{
+    opacity:0;
+    transform:translateY(16px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.is-visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+  }
+
+  /* --- eyebrow / section labels --- */
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--blue);
+    text-transform:uppercase;
+    font-weight:500;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:14px;
+    height:1px;
+    background:var(--blue);
+    display:inline-block;
+  }
+  .eyebrow.on-dark{ color:var(--amber); }
+  .eyebrow.on-dark::before{ background:var(--amber); }
+
+  /* --- header --- */
+  header{
+    background:rgba(247,246,242,0.92);
+    border-bottom:1px solid var(--line);
+    position:sticky;
+    top:0;
+    z-index:50;
+    backdrop-filter:blur(6px);
+  }
+  .header-inner{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    padding:16px 24px;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .brand img{
+    width:52px;
+    height:52px;
+    object-fit:cover;
+    border-radius:8px;
+    border:1px solid var(--line);
+  }
+  .brand-name{ font-weight:600; font-size:15px; }
+  .brand-role{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-soft); margin-top:2px; }
+
+  nav{
+    display:flex;
+    align-items:center;
+    gap:26px;
+    font-family:'JetBrains Mono',monospace;
+  }
+  .nav-link{
+    position:relative;
+    font-size:14px;
+    color:var(--ink-soft);
+    padding-bottom:3px;
+  }
+  .nav-link::after{
+    content:"";
+    position:absolute;
+    left:0; right:0; bottom:-2px;
+    height:1px;
+    background:var(--blue);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform 0.25s ease;
+  }
+  .nav-link:hover{ color:var(--ink); }
+  .nav-link:hover::after{ transform:scaleX(1); }
+
+  /* --- hero --- */
+  .hero{
+    background:var(--navy);
+    color:var(--paper);
+    background-image:radial-gradient(circle at 1px 1px, rgba(247,246,242,0.09) 1px, transparent 1.5px);
+    background-size:26px 26px;
+  }
+  .hero-inner{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:56px;
+    align-items:center;
+    padding:96px 24px;
+  }
+  .hero h2{
+    font-size:44px;
+    line-height:1.1;
+    margin-bottom:22px;
+  }
+  .hero p{
+    max-width:420px;
+    color:var(--paper-soft);
+    font-size:16px;
+    line-height:1.6;
+  }
+  .hero-ctas{
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+    margin-top:34px;
+  }
+  .btn-solid, .btn-outline{
+    display:inline-block;
+    padding:13px 26px;
+    border-radius:6px;
+    font-size:14px;
+    font-weight:600;
+    transition:transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+  .btn-solid{
+    background:var(--amber);
+    color:var(--navy);
+  }
+  .btn-solid:hover{ transform:translateY(-2px); box-shadow:0 10px 24px -8px rgba(231,162,58,0.55); }
+  .btn-outline{
+    border:1px solid var(--line-soft);
+    color:var(--paper);
+    font-weight:500;
+  }
+  .btn-outline:hover{ background:rgba(247,246,242,0.08); transform:translateY(-2px); }
+
+  .frame{
+    position:relative;
+    padding:14px;
+    justify-self:center;
+  }
+  .frame::before, .frame::after,
+  .frame .c2::before, .frame .c2::after{
+    content:"";
+    position:absolute;
+    width:22px;
+    height:22px;
+    border-color:var(--amber);
+  }
+  .frame::before{ top:0; left:0; border-top:2px solid; border-left:2px solid; }
+  .frame::after{ top:0; right:0; border-top:2px solid; border-right:2px solid; }
+  .frame .c2::before{ bottom:0; left:0; border-bottom:2px solid; border-left:2px solid; }
+  .frame .c2::after{ bottom:0; right:0; border-bottom:2px solid; border-right:2px solid; }
+  .frame img{
+    width:240px;
+    height:288px;
+    object-fit:cover;
+    border-radius:4px;
+  }
+
+  /* --- circuit rail (signature element) --- */
+  .rail-wrap{ position:relative; }
+  .rail-wrap::before{
+    content:"";
+    position:absolute;
+    left:-28px;
+    top:0;
+    bottom:0;
+    width:1px;
+    background:linear-gradient(to bottom, transparent, var(--line) 6%, var(--line) 94%, transparent);
+  }
+  .rail-node{
+    position:absolute;
+    left:-28px;
+    top:6px;
+    width:11px;
+    height:11px;
+    transform:translateX(-50%);
+    border-radius:50%;
+    background:var(--paper);
+    border:1.5px solid var(--line);
+    transition:border-color 0.5s ease, box-shadow 0.5s ease, background 0.5s ease;
+  }
+  .rail-node.is-lit{
+    border-color:var(--blue);
+    background:var(--blue);
+    box-shadow:0 0 0 4px rgba(54,103,194,0.15);
+  }
+  @media (max-width: 1023px){
+    .rail-wrap::before, .rail-node{ display:none; }
+  }
+
+  section{ position:relative; }
+
+  .content-section{ padding:96px 0; }
+  .content-section h3{ font-size:30px; margin-bottom:44px; }
+
+  /* --- about --- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:48px;
+    align-items:start;
+  }
+  .about-text{ color:var(--ink-soft); font-size:16px; line-height:1.7; }
+  .about-text p + p{ margin-top:16px; }
+  .about-card{
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:24px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:2.1;
+  }
+  .about-card .k{ color:var(--blue); display:inline-block; width:64px; }
+
+  /* --- skills --- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:32px;
+  }
+  .skills-grid h4{ font-size:18px; margin-bottom:16px; }
+  .chip-row{ display:flex; flex-wrap:wrap; gap:10px; }
+  .chip{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    padding:9px 16px 9px 22px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:4px;
+    font-size:13px;
+    font-family:'JetBrains Mono',monospace;
+    color:var(--ink);
+  }
+  .chip::before{
+    content:"";
+    position:absolute;
+    left:9px;
+    top:50%;
+    transform:translateY(-50%);
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:var(--teal);
+  }
+
+  /* --- projects --- */
+  .projects-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:32px;
+  }
+  .module-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:32px;
+    transition:transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .module-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 20px 40px -20px rgba(17,22,29,0.25);
+    border-color:rgba(54,103,194,0.35);
+  }
+  .status-line{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:16px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+  }
+  .status-dot{
+    width:7px; height:7px; border-radius:50%; background:var(--teal);
+    box-shadow:0 0 0 3px rgba(46,158,143,0.18);
+  }
+  .module-card h4{ font-size:20px; margin-bottom:12px; }
+  .module-card p{ color:var(--ink-soft); font-size:15px; line-height:1.65; margin-bottom:22px; }
+  .project-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    color:var(--blue);
+    font-weight:600;
+    font-size:14px;
+    transition:gap 0.2s ease;
+  }
+  .project-link:hover{ gap:12px; }
+
+  /* --- contact --- */
+  .contact{
+    background:var(--navy);
+    color:var(--paper);
+    background-image:radial-gradient(circle at 1px 1px, rgba(247,246,242,0.09) 1px, transparent 1.5px);
+    background-size:26px 26px;
+  }
+  .contact-inner{ padding:96px 24px 24px; }
+  .contact-copy{ max-width:520px; }
+  .contact-copy h3{ font-size:30px; margin-bottom:18px; }
+  .contact-copy p{ color:var(--paper-soft); font-size:15px; line-height:1.65; margin-bottom:40px; }
+  .contact-list{ font-family:'JetBrains Mono',monospace; font-size:14px; max-width:520px; }
+  .contact-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 0;
+    border-top:1px solid var(--line-soft);
+  }
+  .contact-list a:last-child .contact-row{ border-bottom:1px solid var(--line-soft); }
+  .contact-row .k{ color:var(--paper-faint); }
+  .contact-row .v{ transition:color 0.2s ease; }
+  .contact-row:hover .v{ color:var(--amber); }
+  .footnote{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:rgba(247,246,242,0.4);
+    padding:0 24px 32px;
+    max-width:var(--max);
+    margin:0 auto;
+  }
+
+  /* --- responsive --- */
+  @media (max-width: 860px){
+    .hero-inner{ grid-template-columns:1fr; padding:64px 24px; text-align:center; }
+    .hero p{ margin:0 auto; }
+    .hero-ctas{ justify-content:center; }
+    .frame{ order:-1; }
+    .about-grid{ grid-template-columns:1fr; }
+    .skills-grid{ grid-template-columns:1fr; }
+    .projects-grid{ grid-template-columns:1fr; }
+    .content-section{ padding:64px 0; }
+    .header-inner{ justify-content:center; text-align:center; }
+    nav{ gap:18px; flex-wrap:wrap; justify-content:center; }
+  }
+</style>
 </head>
-<body class="bg-gray-50 text-gray-800">
-  <!-- Header -->
-<header class="bg-white shadow p-6 sticky top-0 z-50">
-  <div class="max-w-5xl mx-auto flex justify-between items-center">
-    <!-- Name + Profile Image -->
-    <div class="flex items-center gap-4">
-      <img src="images/profile.png"
-           alt="Your Photo"
-           class="w-16 h-16 md:w-24 md:h-24 object-cover rounded-full border">
-      <h1 class="text-xl md:text-2xl font-bold">Lloyd Vince Angelo B. Tadeo</h1>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <img src="images/profile.png" alt="Photo of Lloyd Vince Angelo B. Tadeo">
+      <div>
+        <p class="brand-name">Lloyd Vince Angelo B. Tadeo</p>
+        <p class="brand-role">Computer Engineer — Software &amp; Hardware</p>
+      </div>
     </div>
-    <!-- Navigation -->
-    <nav class="space-x-4 font-medium">
-      <a href="#about" class="px-4 py-2 border-2 border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white transition">About Me</a>
-      <a href="#skills" class="px-4 py-2 border-2 border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white transition">Skills</a>
-      <a href="#projects" class="px-4 py-2 border-2 border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white transition">Projects</a>
-      <a href="#contact" class="px-4 py-2 border-2 border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white transition">Contact</a>
+    <nav>
+      <a href="#about" class="nav-link">about</a>
+      <a href="#skills" class="nav-link">skills</a>
+      <a href="#projects" class="nav-link">projects</a>
+      <a href="#contact" class="nav-link">contact</a>
     </nav>
   </div>
 </header>
 
-<!-- Hero Section with Faded Background Image -->
-<section class="relative text-white">
-  <!-- Gradient overlay -->
-<!-- Ultra blue gradient overlay -->
-<div class="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 opacity-80 -z-10"></div>
+<!-- Hero -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div>
+      <span class="eyebrow on-dark">system.identity</span>
+      <h2>I build interfaces<br>on top of circuits.</h2>
+      <p>Computer Engineering graduate focused on front-end and full-stack development, grounded in hands-on experience wiring the hardware underneath it.</p>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn-solid">View projects</a>
+        <a href="#contact" class="btn-outline">Get in touch</a>
+      </div>
+    </div>
 
-  <div class="max-w-5xl mx-auto text-center px-6 py-32 relative">
-    <h2 class="text-4xl md:text-5xl font-extrabold mb-6">
-      Computer Engineering Graduate
-    </h2>
-
-    <p class="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto">
-      Passionate about front-end web and application development, with hands-on experience in software and hardware systems.
-    </p>
-
-    <div class="mt-8 flex justify-center gap-4">
-      <a href="#projects"
-         class="bg-white text-blue-700 px-6 py-3 rounded-xl font-semibold shadow hover:scale-105 transition">
-        View Projects
-      </a>
-
-      <a href="#contact"
-         class="border border-white px-6 py-3 rounded-xl hover:bg-white/10 transition">
-        Contact Me
-      </a>
+    <div class="frame">
+      <div class="c2"></div>
+      <img src="images/profile.png" alt="Lloyd Vince Angelo B. Tadeo">
     </div>
   </div>
 </section>
 
-<!-- About Section with Faded Background Image -->
-<section id="about" class="relative py-24">
-  <div class="absolute inset-0 bg-[url('images/about-bg.jpg')] bg-cover bg-center opacity-10 -z-10"></div>
+<div class="wrap">
+<div class="rail-wrap">
 
-  <div class="max-w-5xl mx-auto px-6 relative">
-    <h3 class="text-3xl md:text-4xl font-bold mb-8 text-center text-gray-900">
-      About Me
-    </h3>
-    
-    <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
-      <!-- Text content -->
-      <div class="text-gray-700 leading-relaxed space-y-4 md:text-lg">
-        <p>
-          I am a Computer Engineering graduate from Saint Mary’s University in Bayombong, Nueva Vizcaya, with a strong interest in software development—particularly front-end web and application development.
-        </p>
-        <p>
-          I enjoy building clean, user-focused interfaces and translating ideas into functional, responsive applications. Alongside front-end development, I am actively expanding my skills toward full-stack engineering while continuously exploring new technologies to strengthen my problem-solving abilities.
-        </p>
-        <p>
-          I am passionate about creating practical solutions through both software and hardware engineering, and I strive to bring creativity, efficiency, and attention to detail into every project I work on.
-        </p>
+  <!-- About -->
+  <section id="about" class="content-section reveal">
+    <span class="rail-node"></span>
+    <span class="eyebrow">about</span>
+    <h3>About me</h3>
+
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a Computer Engineering graduate from Saint Mary's University in Bayombong, Nueva Vizcaya, with a strong interest in software development — particularly front-end web and application development.</p>
+        <p>I enjoy building clean, user-focused interfaces and translating ideas into functional, responsive applications, while expanding my skills toward full-stack engineering and continuously exploring new technologies.</p>
+        <p>I'm equally drawn to the hardware side of engineering, and I try to bring the same creativity, efficiency, and attention to detail to every project — whether it's a browser tab or a breadboard.</p>
+      </div>
+
+      <div class="about-card">
+        <p><span class="k">school</span>Saint Mary's University</p>
+        <p><span class="k">degree</span>B.S. Computer Engineering</p>
+        <p><span class="k">focus</span>Front-end → Full-stack</p>
+        <p><span class="k">also</span>Embedded systems</p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Skills Section -->
-<section id="skills" class="bg-gray-50 py-24">
-  <div class="max-w-6xl mx-auto px-6">
-    <h3 class="text-3xl md:text-4xl font-bold mb-12 text-center text-gray-900">
-      Skills
-    </h3>
+  <!-- Skills -->
+  <section id="skills" class="content-section reveal">
+    <span class="rail-node"></span>
+    <span class="eyebrow">skills</span>
+    <h3>What I work with</h3>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-      <!-- Programming Skills -->
-      <div class="p-8 bg-white rounded-3xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
-        <h4 class="font-semibold text-2xl mb-4 text-blue-700">Programming</h4>
-        <div class="flex flex-wrap gap-3">
-          <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm md:text-base">C#</span>
-          <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm md:text-base">C++</span>
-          <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm md:text-base">Python</span>
-          <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm md:text-base">JavaScript</span>
-          <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm md:text-base">HTML</span>
-          <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm md:text-base">SQL</span>
-          <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm md:text-base">PHP</span>
+    <div class="skills-grid">
+      <div>
+        <h4>Programming</h4>
+        <div class="chip-row">
+          <span class="chip">C#</span>
+          <span class="chip">C++</span>
+          <span class="chip">Python</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">HTML</span>
+          <span class="chip">SQL</span>
+          <span class="chip">PHP</span>
         </div>
       </div>
-
-      <!-- Hardware Skills -->
-      <div class="p-8 bg-white rounded-3xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
-        <h4 class="font-semibold text-2xl mb-4 text-green-700">Hardware</h4>
-        <div class="flex flex-wrap gap-3">
-          <span class="px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm md:text-base">Arduino</span>
-          <span class="px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm md:text-base">Raspberry Pi</span>
-          <span class="px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm md:text-base">Troubleshooting</span>
+      <div>
+        <h4>Hardware</h4>
+        <div class="chip-row">
+          <span class="chip">Arduino</span>
+          <span class="chip">Raspberry Pi</span>
+          <span class="chip">Troubleshooting</span>
         </div>
       </div>
-
-      <!-- Tools -->
-      <div class="p-8 bg-white rounded-3xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
-        <h4 class="font-semibold text-2xl mb-4 text-purple-700">Tools</h4>
-        <div class="flex flex-wrap gap-3">
-          <span class="px-4 py-2 bg-purple-100 text-purple-800 rounded-full text-sm md:text-base">Git / GitHub</span>
-          <span class="px-4 py-2 bg-purple-100 text-purple-800 rounded-full text-sm md:text-base">Linux</span>
-          <span class="px-4 py-2 bg-purple-100 text-purple-800 rounded-full text-sm md:text-base">MATLAB / Multisim</span>
+      <div>
+        <h4>Tools</h4>
+        <div class="chip-row">
+          <span class="chip">Git / GitHub</span>
+          <span class="chip">Linux</span>
+          <span class="chip">MATLAB / Multisim</span>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Projects Section -->
-<section id="projects" class="max-w-5xl mx-auto py-24 px-6">
-  <h3 class="text-3xl font-bold mb-10">Projects</h3>
+  <!-- Projects -->
+  <section id="projects" class="content-section reveal">
+    <span class="rail-node"></span>
+    <span class="eyebrow">projects</span>
+    <h3>Selected work</h3>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12">
+    <div class="projects-grid">
+      <div class="module-card">
+        <div class="status-line">
+          <span class="status-dot"></span>
+          <span>live · capstone</span>
+        </div>
+        <h4>PowerSync</h4>
+        <p>A capstone thesis project integrating full-stack software development with embedded systems for data-driven energy optimization, built on Arduino and Raspberry Pi.</p>
+        <a href="https://lloydangelotadeo.github.io/Power_Sync/" target="_blank" rel="noopener noreferrer" class="project-link">
+          View project <span aria-hidden="true">→</span>
+        </a>
+      </div>
 
-    <!-- Project 1 -->
-    <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition">
-      <h4 class="text-xl font-semibold mb-2">PowerSync</h4>
-      <p class="text-gray-600 mb-3">
-        A capstone thesis project that integrates full-stack software development
-        with embedded systems and data-driven energy optimization using Arduino and Raspberry Pi.
-      </p>
-      <a
-        class="text-blue-600 font-medium hover:underline"
-        href="https://lloydangelotadeo.github.io/Power_Sync/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        View Project
-      </a>
+      <div class="module-card">
+        <div class="status-line">
+          <span class="status-dot"></span>
+          <span>live · e-commerce</span>
+        </div>
+        <h4>CyberVault</h4>
+        <p>A personal gaming laptop and accessories shop, built as a front-end e-commerce project.</p>
+        <a href="https://lloydangelotadeo.github.io/CyberVault/" target="_blank" rel="noopener noreferrer" class="project-link">
+          View project <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div class="module-card">
+        <div class="status-line">
+          <span class="status-dot"></span>
+          <span>deployed · digital signage</span>
+        </div>
+        <h4>AEGIS</h4>
+        <p>An Announcements, Editorial and General Information System currently deployed at the Provincial Environment and Natural Resources Office (PENRO), Nueva Vizcaya — a content-managed display combining notices, news, an events calendar, environmental monitoring, and posters in one dashboard. The link below is a public demo version.</p>
+        <a href="https://lloydangelotadeo.github.io/AEGIS-Announcements-Editorial-and-General-Information-System-/" target="_blank" rel="noopener noreferrer" class="project-link">
+          View demo <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</div>
+</div>
+
+<!-- Contact -->
+<section id="contact" class="contact">
+  <div class="wrap contact-inner">
+    <div class="contact-copy">
+      <span class="eyebrow on-dark">contact</span>
+      <h3>Let's build something.</h3>
+      <p>I'm looking for opportunities in software development, with a strong focus on front-end work, while growing toward full-stack engineering. Reach out any of these ways.</p>
     </div>
 
-    <!-- Project 2 -->
-    <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition">
-      <h4 class="text-xl font-semibold mb-2">CyberVault</h4>
-      <p class="text-gray-600 mb-3">
-        A personal gaming laptop and accessories shop.
-      </p>
-      <a
-        class="text-blue-600 font-medium hover:underline"
-        href="https://lloydangelotadeo.github.io/CyberVault/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        View Project
+    <div class="contact-list">
+      <a href="mailto:lloydangelotadeo1301@gmail.com">
+        <div class="contact-row"><span class="k">email</span><span class="v">lloydangelotadeo1301@gmail.com</span></div>
+      </a>
+      <a href="https://www.linkedin.com/in/lloyd-vince-angelo-tadeo-5b03b8380/" target="_blank" rel="noopener noreferrer">
+        <div class="contact-row"><span class="k">linkedin</span><span class="v">lloyd-vince-angelo-tadeo</span></div>
+      </a>
+      <a href="https://github.com/lloydangelotadeo" target="_blank" rel="noopener noreferrer">
+        <div class="contact-row"><span class="k">github</span><span class="v">lloydangelotadeo</span></div>
       </a>
     </div>
-
   </div>
+  <p class="footnote">© 2026 Lloyd Vince Angelo B. Tadeo</p>
 </section>
 
+<script>
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        var node = entry.target.querySelector('.rail-node');
+        if (node) node.classList.add('is-lit');
+      }
+    });
+  }, { threshold: 0.2 });
 
-<!-- Contact Section -->
-<section id="contact" class="bg-gray-900 text-white py-16">
-  <div class="max-w-5xl mx-auto text-center">
-    <h3 class="text-3xl font-bold mb-6">Contact Me</h3>
-    <p class="text-gray-300 mb-4">
-      I am seeking opportunities in software development, with a strong focus on front-end development, while actively expanding my skills toward full-stack engineering.
-    </p>
-    <p class="font-medium">Email: lloydangelotadeo1301@gmail.com</p>
-    <p class="font-medium">LinkedIn: https://www.linkedin.com/in/lloyd-vince-angelo-tadeo-5b03b8380/</p>
-    <p class="font-medium">GitHub: github.com/lloydangelotadeo</p>
-  </div>
-</section>
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+</script>
 
 </body>
 </html>
-
-
-
-
-
