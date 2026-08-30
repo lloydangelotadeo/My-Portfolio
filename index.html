@@ -282,6 +282,61 @@
   }
   .about-card .k{ color:var(--blue); display:inline-block; width:64px; }
 
+  /* --- experience --- */
+  .exp-card{
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:32px;
+  }
+  .exp-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:14px;
+  }
+  .exp-head h4{ font-size:20px; margin-bottom:4px; }
+  .exp-office{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    color:var(--ink-soft);
+  }
+  .exp-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    color:var(--teal);
+    border:1px solid rgba(46,158,143,0.35);
+    padding:5px 12px;
+    border-radius:999px;
+    white-space:nowrap;
+  }
+  .exp-note{
+    color:var(--ink-soft);
+    font-size:15px;
+    line-height:1.65;
+    margin-bottom:22px;
+  }
+  .exp-list{ list-style:none; display:flex; flex-direction:column; gap:12px; }
+  .exp-list li{
+    position:relative;
+    padding-left:22px;
+    font-size:15px;
+    color:var(--ink);
+    line-height:1.6;
+  }
+  .exp-list li::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:9px;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--blue);
+  }
+
   /* --- skills --- */
   .skills-grid{
     display:grid;
@@ -415,11 +470,12 @@
       <img src="images/profile.png" alt="Photo of Lloyd Vince Angelo B. Tadeo">
       <div>
         <p class="brand-name">Lloyd Vince Angelo B. Tadeo</p>
-        <p class="brand-role">Computer Engineer — Software &amp; Hardware</p>
+        <p class="brand-role">Computer Engineer — Full Stack Development &amp; Hardware and Network Troubleshooting and Maintenance</p>
       </div>
     </div>
     <nav>
       <a href="#about" class="nav-link">about</a>
+      <a href="#experience" class="nav-link">experience</a>
       <a href="#skills" class="nav-link">skills</a>
       <a href="#projects" class="nav-link">projects</a>
       <a href="#contact" class="nav-link">contact</a>
@@ -433,7 +489,7 @@
     <div>
       <span class="eyebrow on-dark">system.identity</span>
       <h2>I build interfaces<br>on top of circuits.</h2>
-      <p>Computer Engineering graduate focused on front-end and full-stack development, grounded in hands-on experience wiring the hardware underneath it.</p>
+      <p>Computer Engineer full-stack development, grounded in hands-on experience wiring the hardware underneath it as well as maintenance and troubleshooting.</p>
       <div class="hero-ctas">
         <a href="#projects" class="btn-solid">View projects</a>
         <a href="#contact" class="btn-outline">Get in touch</a>
@@ -458,17 +514,40 @@
 
     <div class="about-grid">
       <div class="about-text">
-        <p>I'm a Computer Engineering graduate from Saint Mary's University in Bayombong, Nueva Vizcaya, with a strong interest in software development — particularly front-end web and application development.</p>
-        <p>I enjoy building clean, user-focused interfaces and translating ideas into functional, responsive applications, while expanding my skills toward full-stack engineering and continuously exploring new technologies.</p>
+        <p>I'm a Computer Engineer graduate from Saint Mary's University in Bayombong, Nueva Vizcaya, with a strong interest in software development — particularly full stack web application development.</p>
+        <p>I enjoy building clean, user-focused interfaces and translating ideas into functional, responsive applications, and continuously exploring new technologies.</p>
         <p>I'm equally drawn to the hardware side of engineering, and I try to bring the same creativity, efficiency, and attention to detail to every project — whether it's a browser tab or a breadboard.</p>
       </div>
 
       <div class="about-card">
         <p><span class="k">school</span>Saint Mary's University</p>
         <p><span class="k">degree</span>B.S. Computer Engineering</p>
-        <p><span class="k">focus</span>Front-end → Full-stack</p>
+        <p><span class="k">focus</span>Full-stack -> Network and Hardware Engineering</p>
         <p><span class="k">also</span>Embedded systems</p>
       </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="content-section reveal">
+    <span class="rail-node"></span>
+    <span class="eyebrow">experience</span>
+    <h3>Where I work</h3>
+
+    <div class="exp-card">
+      <div class="exp-head">
+        <div>
+          <h4>ICT Technical Staff</h4>
+          <p class="exp-office">DENR — PENRO Nueva Vizcaya</p>
+        </div>
+        <span class="exp-tag">current</span>
+      </div>
+      <p class="exp-note">Also handling the responsibilities of the office's ISA II role for the past 4 months, following a staffing gap left by the previous ISA II's resignation.</p>
+      <ul class="exp-list">
+        <li>System development — building and maintaining internal systems, including AEGIS.</li>
+        <li>Network maintenance — keeping office network infrastructure running and resolving connectivity issues.</li>
+        <li>Systems &amp; equipment maintenance — diagnosing and troubleshooting hardware and software issues across office equipment.</li>
+      </ul>
     </div>
   </section>
 
@@ -503,8 +582,8 @@
         <h4>Tools</h4>
         <div class="chip-row">
           <span class="chip">Git / GitHub</span>
-          <span class="chip">Linux</span>
           <span class="chip">MATLAB / Multisim</span>
+          <span class="chip">AI-assisted development</span>
         </div>
       </div>
     </div>
@@ -564,7 +643,7 @@
     <div class="contact-copy">
       <span class="eyebrow on-dark">contact</span>
       <h3>Let's build something.</h3>
-      <p>I'm looking for opportunities in software development, with a strong focus on front-end work, while growing toward full-stack engineering. Reach out any of these ways.</p>
+      <p>I'm looking for opportunities in software development, with a strong focus on full-stack engineering and hardware/network troubleshooting and maintenance. Reach out any of these ways.</p>
     </div>
 
     <div class="contact-list">
